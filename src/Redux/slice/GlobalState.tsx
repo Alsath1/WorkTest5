@@ -1,19 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface State {
-	id: number;
+	NumPage: number;
+	Loading: boolean;
 }
 
 const initialState: State = {
-	id: NaN
+	NumPage: 0,
+	Loading: false
 };
 
 export const GlobalState = createSlice({
 	name: 'SiteBar',
 	initialState,
 	reducers: {
-		addArrEl(state, action) {
-			state.id = action.payload;
+		setPagePlus(state) {
+			if (state.NumPage < 160) {
+				state.NumPage = state.NumPage + 1;
+			}
+		},
+		setPageMinus(state) {
+			if (state.NumPage > 0) {
+				state.NumPage = state.NumPage - 1;
+			}
+		},
+		isLoading(state, action) {
+			state.Loading = action.payload;
 		}
 	}
 });

@@ -1,4 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import md5 from 'md5';
+
+const convertToMd5 = () => {
+	const hash = md5('Valantis_20240225');
+	return hash;
+};
 
 interface QuryRequest {
 	_action?: string;
@@ -12,7 +18,7 @@ export const postSlice = createApi({
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
-			'X-Auth': '80b8a664896f96245af9c5df02e851c3'
+			'X-Auth': convertToMd5()
 		}
 	}),
 	endpoints: builder => ({
