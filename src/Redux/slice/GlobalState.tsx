@@ -3,11 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 interface State {
 	NumPage: number;
 	Loading: boolean;
+	Input: string;
 }
 
 const initialState: State = {
 	NumPage: 0,
-	Loading: false
+	Loading: false,
+	Input: ''
 };
 
 export const GlobalState = createSlice({
@@ -26,6 +28,9 @@ export const GlobalState = createSlice({
 		},
 		isLoading(state, action) {
 			state.Loading = action.payload;
+		},
+		inputValue(state, action) {
+			state.Input = action.payload;
 		}
 	}
 });

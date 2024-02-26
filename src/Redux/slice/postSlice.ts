@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import md5 from 'md5';
 
 const convertToMd5 = () => {
-	const hash = md5('Valantis_20240225');
+	const hash = md5('Valantis_20240226');
 	return hash;
 };
 
@@ -28,6 +28,12 @@ export const postSlice = createApi({
 				body: { action: _action, params: _params }
 			})
 		}),
+		Filtered: builder.query({
+			query: ({ _action, _params }: QuryRequest) => ({
+				url: '/',
+				body: { action: _action, params: _params }
+			})
+		}),
 		getAllElById: builder.query({
 			query: ({ _action, _params }: QuryRequest) => ({
 				url: '/',
@@ -40,5 +46,10 @@ export const postSlice = createApi({
 	})
 });
 
-export const { useGetAllIdQuery, useGetAllElByIdQuery, useLazyGetAllIdQuery } =
-	postSlice;
+export const {
+	useGetAllIdQuery,
+	useGetAllElByIdQuery,
+	useLazyGetAllIdQuery,
+	useLazyFilteredQuery,
+	useLazyGetAllElByIdQuery
+} = postSlice;
